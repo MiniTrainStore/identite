@@ -1,4 +1,4 @@
-# Mini Train Store — Carte de visite
+# Mini Train Store, carte de visite
 
 Présenter la boutique et transmettre ses coordonnées, lors de rencontres, salons ou échanges.
 
@@ -9,7 +9,7 @@ Présenter la boutique et transmettre ses coordonnées, lors de rencontres, salo
 Même système graphique que la [carte d’expédition](../cartes-expedition/) : couleurs du site (marine `#133a57`, bleu `#31aadf`, fond `#f5f0f0`), bandeau marine avec onglet bleu ciel, voie ferrée en pied de carte, Montserrat (police du site) pour les informations et Nimbus Roman Italic pour la devise.
 
 - **Recto** : logo, devise du site « Par un passionné, pour les passionnés. », cinq étoiles et « plus de 1 500 avis clients sur leboncoin », adresse du site, voie ferrée.
-- **Verso** : spécialité et offre, puis « Arnaud — fondateur », e-mail, téléphone et site à gauche, QR code à droite.
+- **Verso** : spécialité et offre, puis « Arnaud, fondateur », e-mail, téléphone et site à gauche, QR code à droite.
 
 ## Fichiers
 

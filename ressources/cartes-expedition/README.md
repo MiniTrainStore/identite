@@ -1,4 +1,4 @@
-# Mini Train Store — Carte de remerciement pour les expéditions
+# Mini Train Store, carte de remerciement pour les expéditions
 
 Carte recto-verso à glisser dans les colis, en conservant le verso largement libre pour ajouter un message manuscrit.
 
@@ -14,7 +14,7 @@ Même système graphique que la [carte de visite](../cartes-de-visite/) : couleu
 ## Fichiers
 
 - [SVG du recto](minitrainstore-recto.svg) et [SVG du verso](minitrainstore-verso.svg) : entièrement vectoriels, textes éditables. Copies identiques dans [sources-editables](sources-editables/).
-- **[Planche A4 simple face — 4 paires recto/verso](minitrainstore-planche-A4-simple-face.pdf)** : **1 page A4**, 4 lignes de 2 panneaux (recto à gauche, verso à droite), avec 3 mm de fond perdu et des repères de coupe. [Aperçu](minitrainstore-planche-A4-simple-face-apercu.png). **Recommandée sans imprimante recto-verso**.
+- **[Planche A4 simple face, 4 paires recto/verso](minitrainstore-planche-A4-simple-face.pdf)** : **1 page A4**, 4 lignes de 2 panneaux (recto à gauche, verso à droite), avec 3 mm de fond perdu et des repères de coupe. [Aperçu](minitrainstore-planche-A4-simple-face-apercu.png). **Recommandée sans imprimante recto-verso**.
 - **[Planche A4 recto-verso, 8 cartes par face](minitrainstore-planche-A4.pdf)** : 2 pages A4 portrait (2 colonnes × 4 rangées) avec fonds perdus, traits de coupe et rectos/versos alignés géométriquement. [Aperçu](minitrainstore-planche-A4-apercu.png).
 - [PDF d'impression recto-verso](minitrainstore-impression.pdf) : 2 pages, format fini **85 × 55 mm**, fond perdu de **3 mm** de chaque côté et TrimBox au format fini.
 - [Aperçu recto-verso](minitrainstore-apercu.png).

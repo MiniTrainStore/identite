@@ -172,7 +172,7 @@ def svg(title: str, body: list[str]) -> str:
 # --- Carte de visite -------------------------------------------------------
 
 def business_recto() -> str:
-    return svg("Mini Train Store — carte de visite, recto", [
+    return svg("Mini Train Store, carte de visite, recto", [
         band(),
         logo_centered(9.4, 62),
         text(42.5, 30.2, "Par un passionné,", 4.3,
@@ -190,7 +190,7 @@ def business_recto() -> str:
 
 def business_verso() -> str:
     qr_size, qr_x, qr_y = 17, W - MARGIN - 17, 27.6
-    return svg("Mini Train Store — carte de visite, verso", [
+    return svg("Mini Train Store, carte de visite, verso", [
         band(),
         text(MARGIN, 11.6, "MODÉLISME FERROVIAIRE", 3.1, weight="700",
              spacing=.22),
@@ -203,7 +203,7 @@ def business_verso() -> str:
              weight="600", fill=SKY, spacing=.3),
         f'<text x="{MARGIN}" y="35.4" font-family="{SANS}" font-size="3.2" '
         f'fill="{NAVY}"><tspan font-weight="700">Arnaud</tspan>'
-        f'<tspan font-size="2.3" fill="{MUTED}">\u00a0— fondateur</tspan></text>',
+        f'<tspan font-size="2.3" fill="{MUTED}">, fondateur</tspan></text>',
         text(MARGIN, 39.9, EMAIL, 2.45),
         text(MARGIN, 43.7, PHONE, 2.45, spacing=.08),
         text(MARGIN, 47.5, SITE, 2.45),
@@ -218,7 +218,7 @@ def business_verso() -> str:
 def shipping_recto() -> str:
     qr_size = 13.4
     qr_x, qr_y = W - MARGIN - qr_size, 35.2
-    return svg("Mini Train Store — carte de remerciement, recto", [
+    return svg("Mini Train Store, carte de remerciement, recto", [
         band(),
         logo_centered(5.4, 34),
         text(42.5, 22.6, "Merci !", 8.6, family=SCRIPT, style="italic",
@@ -244,7 +244,7 @@ def shipping_recto() -> str:
 
 def shipping_verso() -> str:
     lines = "".join(f"M{MARGIN + 2} {y:g}H{W - MARGIN - 2}" for y in (27, 33.4, 39.8))
-    return svg("Mini Train Store — carte de remerciement, verso", [
+    return svg("Mini Train Store, carte de remerciement, verso", [
         band(),
         logo_centered(5.4, 24),
         text(42.5, 18.6, "Un petit mot pour vous…", 4.4, family=SCRIPT,

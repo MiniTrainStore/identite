@@ -201,7 +201,7 @@ def write_a4_single_face_preview() -> None:
     except OSError:
         font = ImageFont.load_default()
     draw.text(
-        (outer, 10), "A4 simple face — 4 rectos et 4 versos",
+        (outer, 10), "A4 simple face : 4 rectos et 4 versos",
         font=font, fill="#133a57",
     )
     margin_x, margin_y = _a4_geometry()
@@ -282,8 +282,8 @@ def write_a4_preview() -> None:
     preview.save(CARDS / "minitrainstore-planche-A4-apercu.png", optimize=True)
 
 PREVIEW_LABELS = {
-    "cartes-de-visite": ("RECTO", "VERSO — Contact & QR code"),
-    "cartes-expedition": ("RECTO — Merci & contact", "VERSO — Message manuscrit"),
+    "cartes-de-visite": ("RECTO", "VERSO : contact et QR code"),
+    "cartes-expedition": ("RECTO : merci et contact", "VERSO : message manuscrit"),
 }
 
 

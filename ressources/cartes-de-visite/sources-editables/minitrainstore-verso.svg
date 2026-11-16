@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="85mm" height="55mm" viewBox="0 0 85 55" role="img" aria-label="Mini Train Store — carte de visite, verso">
-<title>Mini Train Store — carte de visite, verso</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="85mm" height="55mm" viewBox="0 0 85 55" role="img" aria-label="Mini Train Store, carte de visite, verso">
+<title>Mini Train Store, carte de visite, verso</title>
 <rect x="-3" y="-3" width="91" height="61" fill="#f5f0f0"/>
 <rect x="-3" y="-3" width="91" height="5.1" fill="#133a57"/><rect x="6" y="2.1" width="15" height=".75" fill="#31aadf"/>
 <text x="6" y="11.6" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="3.1" fill="#133a57" font-weight="700" letter-spacing="0.22">MODÉLISME FERROVIAIRE</text>
@@ -7,7 +7,7 @@
 <text x="6" y="21.2" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="2.3" fill="#4d6578">Locomotives, voitures, wagons &amp; accessoires.</text>
 <path d="M6 24.8H79" stroke="#cdd8dc" stroke-width=".2"/>
 <text x="6" y="30.4" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="1.75" fill="#31aadf" font-weight="600" letter-spacing="0.3">CONTACT &amp; BOUTIQUE EN LIGNE</text>
-<text x="6" y="35.4" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="3.2" fill="#133a57"><tspan font-weight="700">Arnaud</tspan><tspan font-size="2.3" fill="#4d6578"> — fondateur</tspan></text>
+<text x="6" y="35.4" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="3.2" fill="#133a57"><tspan font-weight="700">Arnaud</tspan><tspan font-size="2.3" fill="#4d6578">, fondateur</tspan></text>
 <text x="6" y="39.9" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="2.45" fill="#133a57">arnaud@minitrainstore.fr</text>
 <text x="6" y="43.7" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="2.45" fill="#133a57" letter-spacing="0.08">06 06 43 83 44</text>
 <text x="6" y="47.5" font-family="Montserrat,DejaVu Sans,Arial,sans-serif" font-size="2.45" fill="#133a57">minitrainstore.fr</text>
