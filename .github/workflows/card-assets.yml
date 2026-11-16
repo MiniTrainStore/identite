@@ -5,7 +5,7 @@ on:
     paths:
       - 'ressources/cartes-de-visite/**.svg'
       - 'ressources/cartes-expedition/**.svg'
-      - 'ressources/logo-horizontal.svg'
+      - 'ressources/logo/**'
       - 'scripts/build_card_sources.py'
       - 'scripts/generate_cards.py'
       - '.github/workflows/card-assets.yml'

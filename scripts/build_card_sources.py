@@ -25,7 +25,7 @@ import segno
 
 ROOT = Path(__file__).resolve().parents[1]
 RESOURCES = ROOT / "ressources"
-LOGO = RESOURCES / "logo-horizontal.svg"
+LOGO = RESOURCES / "logo" / "minitrainstore-logo.svg"  # drawing spans 0..1050 x 0..213
 URL = "https://www.minitrainstore.fr/"
 # One utm_source per card, so Umami's UTM report tells which card brings visits.
 URL_BUSINESS = URL + "?utm_source=carte-visite"
@@ -47,7 +47,7 @@ SCRIPT = "Z003,URW Chancery L,cursive"
 W, H, BLEED = 85, 55, 3
 MARGIN = 6
 
-LOGO_W, LOGO_H = 1050, 214
+LOGO_W, LOGO_H = 1050, 213
 
 
 def logo(x: float, y: float, width: float) -> str:

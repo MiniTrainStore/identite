@@ -39,7 +39,7 @@ Les deux faces utilisent exactement la même grille centrée, mais les imprimant
 
 ## Reproduire les exports
 
-Les deux cartes (visite et expédition) sont décrites dans [`scripts/build_card_sources.py`](../../scripts/build_card_sources.py) : positions en millimètres, couleurs, polices, logo ([`ressources/logo-horizontal.svg`](../logo-horizontal.svg)) et QR code généré. Modifier ce script plutôt que les SVG, puis :
+Les deux cartes (visite et expédition) sont décrites dans [`scripts/build_card_sources.py`](../../scripts/build_card_sources.py) : positions en millimètres, couleurs, polices, logo ([`ressources/logo/`](../logo/)) et QR code généré. Modifier ce script plutôt que les SVG, puis :
 
 ```sh
 python -m pip install segno cairosvg pypdf pillow
