@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Regenerate print-ready shipping cards from the vector SVG masters.
+"""Regenerate print-ready exports of the business and shipping cards.
+
+The SVG masters come from scripts/build_card_sources.py.
 
 Run: python -m pip install cairosvg pypdf pillow
-     python scripts/generate_shipping_card.py
+     python scripts/generate_cards.py
 """
 from __future__ import annotations
 
 from io import BytesIO
-import base64
 from pathlib import Path
 import re
 from zipfile import ZIP_DEFLATED, ZipFile
@@ -18,7 +19,7 @@ from pypdf import PdfReader, PdfWriter, Transformation
 from pypdf.generic import RectangleObject
 
 ROOT = Path(__file__).resolve().parents[1]
-CARDS = ROOT / "ressources" / "cartes-expedition"
+CARDS = ROOT / "ressources" / "cartes-expedition"  # rebound per card in main()
 MM_TO_PT = 72 / 25.4
 FINISHED_WIDTH_MM = 85
 FINISHED_HEIGHT_MM = 55
@@ -26,21 +27,7 @@ BLEED_MM = 3
 
 
 def load_svg(face: str) -> bytes:
-    """Resolve the optional raster train image for portable print rendering."""
-    source = (CARDS / f"minitrainstore-{face}.svg").read_bytes()
-    if face == "recto":
-        image_href = b'href="assets/train-recto.jpg"'
-        if image_href not in source:
-            raise ValueError("Expected raster train asset reference missing")
-        jpg = (CARDS / "assets" / "train-recto.jpg").read_bytes()
-        encoded = base64.b64encode(jpg)
-        source = source.replace(image_href, b'href="data:image/jpeg;base64,' + encoded + b'"')
-    return source
-
-
-def write_standalone() -> None:
-    """Standalone SVG is usable without checking out or copying assets."""
-    (CARDS / "minitrainstore-recto-standalone.svg").write_bytes(load_svg("recto"))
+    return (CARDS / f"minitrainstore-{face}.svg").read_bytes()
 
 
 def svg_with_bleed(svg: bytes) -> bytes:
@@ -69,6 +56,8 @@ def write_pdf() -> None:
             ]
         )
         writer.add_page(page)
+    kind = "Carte de visite" if CARDS.name == "cartes-de-visite" else "Carte de remerciement"
+    writer.add_metadata({"/Title": f"Mini Train Store | {kind}", "/Author": "Mini Train Store"})
     with (CARDS / "minitrainstore-impression.pdf").open("wb") as fp:
         writer.write(fp)
 
@@ -292,6 +281,12 @@ def write_a4_preview() -> None:
             )
     preview.save(CARDS / "minitrainstore-planche-A4-apercu.png", optimize=True)
 
+PREVIEW_LABELS = {
+    "cartes-de-visite": ("RECTO", "VERSO — Contact & QR code"),
+    "cartes-expedition": ("RECTO — Merci & contact", "VERSO — Message manuscrit"),
+}
+
+
 def write_preview() -> None:
     width, height, margin, gap, header = 1020, 660, 40, 50, 75
     canvas = Image.new(
@@ -304,7 +299,7 @@ def write_preview() -> None:
         font = ImageFont.load_default()
 
     for i, (face, label) in enumerate(
-        [("recto", "RECTO — Boutique & QR code"), ("verso", "VERSO — Message manuscrit")]
+        zip(("recto", "verso"), PREVIEW_LABELS[CARDS.name])
     ):
         x = margin + i * (width + gap)
         y = header
@@ -322,8 +317,6 @@ def write_preview() -> None:
 def write_zip() -> None:
     files = [
         "minitrainstore-recto.svg",
-        "minitrainstore-recto-standalone.svg",
-        "assets/train-recto.jpg",
         "minitrainstore-verso.svg",
         "sources-editables/minitrainstore-recto.svg",
         "sources-editables/minitrainstore-verso.svg",
@@ -341,8 +334,15 @@ def write_zip() -> None:
             archive.write(CARDS / relative_path, relative_path)
 
 
-if __name__ == "__main__":
-    write_standalone()
+def main() -> None:
+    global CARDS
+    for folder in PREVIEW_LABELS:
+        CARDS = ROOT / "ressources" / folder
+        generate()
+    print("Created both cards: PDF, 8-up duplex and 4-pair simplex A4 sheets, previews and ZIP.")
+
+
+def generate() -> None:
     write_pdf()
     write_a4_sheet()
     write_a4_preview()
@@ -350,4 +350,7 @@ if __name__ == "__main__":
     write_a4_single_face_preview()
     write_preview()
     write_zip()
-    print("Created cards, 8-up duplex sheet, 4-pair simplex sheet, previews and ZIP.")
+
+
+if __name__ == "__main__":
+    main()

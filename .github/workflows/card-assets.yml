@@ -1,0 +1,55 @@
+name: Build card print assets
+
+on:
+  push:
+    paths:
+      - 'ressources/cartes-de-visite/**.svg'
+      - 'ressources/cartes-expedition/**.svg'
+      - 'ressources/logo-horizontal.svg'
+      - 'scripts/build_card_sources.py'
+      - 'scripts/generate_cards.py'
+      - '.github/workflows/card-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    name: Generate PDF, A4 sheets, previews and ZIP
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install vector artwork fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-montserrat fonts-dejavu-core fonts-urw-base35
+          fc-cache -f
+      - name: Install export dependencies
+        run: python -m pip install 'cairosvg>=2.7,<3' 'pypdf>=5,<8' 'pillow>=10,<13'
+      - name: Generate print exports
+        run: python scripts/generate_cards.py
+      - name: Commit updated files if needed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for card in cartes-de-visite cartes-expedition; do
+            git add -- \
+              "ressources/$card/minitrainstore-impression.pdf" \
+              "ressources/$card/minitrainstore-planche-A4.pdf" \
+              "ressources/$card/minitrainstore-planche-A4-apercu.png" \
+              "ressources/$card/minitrainstore-planche-A4-simple-face.pdf" \
+              "ressources/$card/minitrainstore-planche-A4-simple-face-apercu.png" \
+              "ressources/$card/minitrainstore-apercu.png" \
+              "ressources/$card/minitrainstore-kit-carte.zip"
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(cards): regenerate print-ready exports"
+            git push
+          fi
