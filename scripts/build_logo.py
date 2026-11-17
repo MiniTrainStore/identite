@@ -7,7 +7,7 @@ with HarfBuzz, so kerning is kept) and placed against the locomotive's
 geometry: the two lines share the italic axis and the same width, and keep
 a constant clearance from the nose and the swoosh.
 
-    python -m pip install uharfbuzz fonttools cairosvg
+    python -m pip install uharfbuzz fonttools cairosvg pillow
     python scripts/build_logo.py
 
 Needs Montserrat ExtraBold Italic and SemiBold Italic (Debian/Ubuntu:
@@ -15,6 +15,7 @@ fonts-montserrat), found with fc-match.
 """
 from __future__ import annotations
 
+import io
 import math
 from pathlib import Path
 import re
@@ -24,6 +25,7 @@ import cairosvg
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
+from PIL import Image
 import uharfbuzz as hb
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -182,6 +184,27 @@ BADGES = {
 }
 
 
+# Favicon: at 16 to 48 px the whole locomotive is a few pixels, so the tile
+# zooms on the nose and windscreen. Brand blue stands out on light and dark
+# browser tabs, where navy disappears.
+FAVICON_SCALE = 2.0
+FAVICON_CENTRE = 370, 95
+FAVICON_RADIUS = 96
+
+
+def favicon(layers) -> str:
+    cx, cy = FAVICON_CENTRE
+    tx, ty = BADGE / 2 - cx * FAVICON_SCALE, BADGE / 2 - cy * FAVICON_SCALE
+    body = "".join(f'<path fill="{c}" d="{d}"/>' for c, d in recolour(layers, {SKY: WHITE}))
+    outline = f'<rect width="{BADGE}" height="{BADGE}" rx="{FAVICON_RADIUS}"/>'
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {BADGE} {BADGE}" '
+            f'width="{BADGE}" height="{BADGE}"><title>MiniTrainStore</title>'
+            f'<defs><clipPath id="tile">{outline}</clipPath></defs>'
+            f'{outline.replace("/>", f' fill="{SKY}"/>')}'
+            f'<g clip-path="url(#tile)"><g transform="translate({tx:.2f} {ty:.2f}) '
+            f'scale({FAVICON_SCALE})">{body}</g></g></svg>\n')
+
+
 def badge(layers, shape: str, background: str, mapping: dict[str, str]) -> str:
     """A square tile, rounded square or disc filled by the locomotive."""
     r = BADGE / 2
@@ -228,6 +251,7 @@ def main() -> None:
     # tile, which crops the speed lines and the swoosh.
     for name, (shape, background, mapping) in BADGES.items():
         files[name] = badge(icon_layers, shape, background, mapping)
+    files["minitrainstore-favicon.svg"] = favicon(icon_layers)
     for name, content in files.items():
         (OUT / name).write_text(content, encoding="utf-8")
     cairosvg.svg2png(bytestring=files["minitrainstore-logo.svg"].encode(),
@@ -237,6 +261,15 @@ def main() -> None:
                          write_to=str(OUT / name.replace(".svg", ".png")), output_width=512)
     cairosvg.svg2png(bytestring=files["minitrainstore-locomotive.svg"].encode(),
                      write_to=str(OUT / "minitrainstore-locomotive.png"), output_width=1288)
+    # Each favicon size is rendered from the vector, not downscaled from 512 px.
+    sizes = (16, 32, 48)
+    frames = [Image.open(io.BytesIO(cairosvg.svg2png(
+        bytestring=files["minitrainstore-favicon.svg"].encode(), output_width=size)))
+        for size in sizes]
+    frames[-1].save(OUT / "minitrainstore-favicon.ico", sizes=[(s, s) for s in sizes],
+                    append_images=frames[:-1])
+    cairosvg.svg2png(bytestring=files["minitrainstore-favicon.svg"].encode(),
+                     write_to=str(OUT / "minitrainstore-favicon.png"), output_width=192)
     print("Logo files written to", OUT.relative_to(ROOT))
 
 

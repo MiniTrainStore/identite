@@ -24,6 +24,7 @@ Mise en page :
 | [minitrainstore-icone-carre-plein.svg](minitrainstore-icone-carre-plein.svg) ([PNG 512 px](minitrainstore-icone-carre-plein.png)) | Carré à bords droits, fond marine : pour les plateformes qui découpent elles-mêmes l'image (Google, Facebook, Instagram, icône iPhone) |
 | [minitrainstore-icone-carre-clair.svg](minitrainstore-icone-carre-clair.svg) ([PNG 512 px](minitrainstore-icone-carre-clair.png)) | Carré arrondi, fond blanc, couleurs d'origine : sur fond foncé ou à côté d'autres icônes sombres |
 | [minitrainstore-icone-carre-ciel.svg](minitrainstore-icone-carre-ciel.svg) ([PNG 512 px](minitrainstore-icone-carre-ciel.png)) | Carré arrondi, fond bleu ciel : variante plus vive, pour les visuels promotionnels |
+| [minitrainstore-favicon.svg](minitrainstore-favicon.svg) ([ICO 16, 32, 48 px](minitrainstore-favicon.ico), [PNG 192 px](minitrainstore-favicon.png)) | Favicon : onglet du navigateur, favoris. Cadré sur l'avant du train pour rester lisible en 16 px, sur fond bleu ciel pour ressortir sur les onglets clairs comme sombres |
 | [locomotive.svg](locomotive.svg) | Source : tracé de la locomotive (ne pas retoucher à la main) |
 
 Couleurs : marine `#133a57`, bleu ciel `#31aadf`.
