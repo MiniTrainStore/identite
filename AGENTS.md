@@ -12,7 +12,7 @@ organization.
 | `ressources/planche-identite.png` | Identity board, generated: the whole identity on one page |
 | `ressources/logo/` | Logo and icon variants. `locomotive.svg` is the traced locomotive: every logo is composed from it |
 | `ressources/cartes-de-visite/`, `ressources/cartes-expedition/` | Cards: SVG masters (`minitrainstore-recto.svg`, `-verso.svg`), editable sources, and the generated exports (print PDF, A4 sheets, previews, ZIP kit) |
-| `ressources/categories/` | Category images of the former Odoo shop |
+| `ressources/categories/` | Category line drawings and livery-coloured tiles (SVG), exported from the storefront code by `npm run export:category-art` in `boutique/storefront`: never edit them by hand |
 | `scripts/build_logo.py` | Composes the logo from the locomotive and the Montserrat outlines (`uharfbuzz`, `fonttools`, `cairosvg`) |
 | `scripts/build_card_sources.py` | Builds the SVG masters of the cards |
 | `scripts/build_board.py` | Builds the identity board (`ressources/planche-identite.svg`, `.png`): logo, colours, font, icons and cards on one page |
