@@ -10,7 +10,6 @@ organization.
 | Path | Role |
 | --- | --- |
 | `ressources/logo/` | Logo and icon variants. `locomotive.svg` is the traced locomotive: every logo is composed from it |
-| `ressources/logo.svg`, `ressources/icon.svg` | Main logo and icon |
 | `ressources/cartes-de-visite/`, `ressources/cartes-expedition/` | Cards: SVG masters (`minitrainstore-recto.svg`, `-verso.svg`), editable sources, and the generated exports (print PDF, A4 sheets, previews, ZIP kit) |
 | `ressources/categories/` | Category images of the former Odoo shop |
 | `scripts/build_logo.py` | Composes the logo from the locomotive and the Montserrat outlines (`uharfbuzz`, `fonttools`, `cairosvg`) |

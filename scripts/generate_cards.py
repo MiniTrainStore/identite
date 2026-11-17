@@ -11,7 +11,7 @@ from __future__ import annotations
 from io import BytesIO
 from pathlib import Path
 import re
-from zipfile import ZIP_DEFLATED, ZipFile
+from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 import cairosvg
 from PIL import Image, ImageDraw, ImageFont
@@ -329,9 +329,13 @@ def write_zip() -> None:
         "README.md",
         "LIRE-AVANT-IMPRESSION.txt",
     ]
+    # Fixed timestamps: the archive only changes when its content does.
     with ZipFile(CARDS / "minitrainstore-kit-carte.zip", "w", ZIP_DEFLATED) as archive:
         for relative_path in files:
-            archive.write(CARDS / relative_path, relative_path)
+            info = ZipInfo(relative_path, date_time=(1980, 1, 1, 0, 0, 0))
+            info.compress_type = ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            archive.writestr(info, (CARDS / relative_path).read_bytes())
 
 
 def main() -> None:

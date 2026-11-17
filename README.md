@@ -4,7 +4,7 @@ Visual identity of [Mini Train Store](https://www.minitrainstore.fr/): logo, ico
 
 ## Structure
 
-- `ressources/logo.svg`, `ressources/icon.svg`, `ressources/logo/`: logo and icon.
+- `ressources/logo/`: logo and icon variants.
 - `ressources/cartes-de-visite/`, `ressources/cartes-expedition/`: business and shipping cards (SVG sources, PDF for the printer, A4 sheets, previews). Read `LIRE-AVANT-IMPRESSION.txt` before printing.
 - `ressources/categories/`: category artwork.
 - `scripts/`: `build_logo.py`, `build_card_sources.py` and `generate_cards.py`, run by the [card assets workflow](.github/workflows/card-assets.yml) on every change to regenerate the exports.
