@@ -8,6 +8,7 @@ on:
       - 'ressources/logo/**'
       - 'scripts/build_card_sources.py'
       - 'scripts/generate_cards.py'
+      - 'scripts/build_board.py'
       - 'pyproject.toml'
       - 'uv.lock'
       - '.github/workflows/card-assets.yml'
@@ -33,6 +34,8 @@ jobs:
           fc-cache -f
       - name: Generate print exports
         run: uv run --locked scripts/generate_cards.py
+      - name: Generate the identity board
+        run: uv run --locked scripts/build_board.py
       - name: Commit updated files if needed
         run: |
           git config user.name "github-actions[bot]"
@@ -47,6 +50,7 @@ jobs:
               "ressources/$card/minitrainstore-apercu.png" \
               "ressources/$card/minitrainstore-kit-carte.zip"
           done
+          git add -- ressources/planche-identite.svg ressources/planche-identite.png
           if ! git diff --cached --quiet; then
             git commit -m "chore(cards): regenerate print-ready exports"
             git push
