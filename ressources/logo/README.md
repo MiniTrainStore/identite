@@ -32,8 +32,7 @@ Couleurs : marine `#133a57`, bleu ciel `#31aadf`.
 ## Régénérer
 
 ```sh
-python -m pip install uharfbuzz fonttools cairosvg
-python scripts/build_logo.py
+uv run scripts/build_logo.py
 ```
 
 Il faut installer Montserrat (`fonts-montserrat` sous Debian/Ubuntu). Les réglages de mise en page sont en tête de [`scripts/build_logo.py`](../../scripts/build_logo.py). Les cartes utilisent `minitrainstore-logo.svg` : relancer ensuite `scripts/build_card_sources.py` et `scripts/generate_cards.py`.

@@ -14,14 +14,14 @@ organization.
 | `ressources/categories/` | Category images of the former Odoo shop |
 | `scripts/build_logo.py` | Composes the logo from the locomotive and the Montserrat outlines (`uharfbuzz`, `fonttools`, `cairosvg`) |
 | `scripts/build_card_sources.py` | Builds the SVG masters of the cards |
-| `scripts/generate_cards.py` | Builds the print-ready exports from the masters (`scripts/requirements.txt`) |
+| `scripts/generate_cards.py` | Builds the print-ready exports from the masters (dependencies in `pyproject.toml`, managed with uv) |
 | `.github/workflows/card-assets.yml` | Regenerates and commits the exports whenever a master or a script changes |
 
 ## Rules
 
 - Edit the SVG masters or the scripts, never the generated exports: CI regenerates them. Run
-  `python -m pip install -r scripts/requirements.txt` then `python scripts/generate_cards.py` to
-  preview locally.
+  `uv run scripts/generate_cards.py` to preview locally (uv installs the dependencies
+  from `pyproject.toml` and `uv.lock`).
 - Text on the cards is French, with correct accents; never use the em dash (the long dash).
 - The shop's palette (navy, brand blue, and the liveries of French rolling stock used as accents)
   is described in the shop's design documentation (`boutique/docs/conception/11-interface.md`):

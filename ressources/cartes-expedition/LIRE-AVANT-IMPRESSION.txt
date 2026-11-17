@@ -24,9 +24,8 @@ QR code : https://www.minitrainstore.fr/?utm_source=carte-colis ; sans service d
 Coordonnées reprises du site le 17 octobre 2026 : arnaud@minitrainstore.fr ; 06 06 43 83 44.
 
 Les SVG sont composés par scripts/build_card_sources.py ; les exports PDF, PNG et ZIP sont régénérés avec :
-  python -m pip install segno cairosvg pypdf pillow
-  python scripts/build_card_sources.py
-  python scripts/generate_cards.py
+  uv run scripts/build_card_sources.py
+  uv run scripts/generate_cards.py
 
 
 PLANCHE A4 (8 CARTES PAR FACE) :

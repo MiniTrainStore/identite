@@ -42,9 +42,8 @@ Les deux faces utilisent exactement la même grille centrée, mais les imprimant
 Les deux cartes (visite et expédition) sont décrites dans [`scripts/build_card_sources.py`](../../scripts/build_card_sources.py) : positions en millimètres, couleurs, polices, logo ([`ressources/logo/`](../logo/)) et QR code généré. Modifier ce script plutôt que les SVG, puis :
 
 ```sh
-python -m pip install segno cairosvg pypdf pillow
-python scripts/build_card_sources.py   # SVG maîtres des deux cartes
-python scripts/generate_cards.py       # PDF, planches A4, aperçus et ZIP
+uv run scripts/build_card_sources.py   # SVG maîtres des deux cartes
+uv run scripts/generate_cards.py       # PDF, planches A4, aperçus et ZIP
 ```
 
 Avec Inkscape installé, `build_card_sources.py` écrit aussi les SVG principaux de la carte de visite avec textes en tracés. Sous Debian/Ubuntu, installer `fonts-montserrat`, `fonts-dejavu-core` et `fonts-urw-base35` pour conserver les mêmes polices que l'export CI. La [GitHub Action](../../.github/workflows/card-assets.yml) régénère les exports des deux cartes après une modification des SVG ou des scripts.

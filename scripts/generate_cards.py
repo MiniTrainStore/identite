@@ -3,8 +3,7 @@
 
 The SVG masters come from scripts/build_card_sources.py.
 
-Run: python -m pip install cairosvg pypdf pillow
-     python scripts/generate_cards.py
+Run: uv run scripts/generate_cards.py
 """
 from __future__ import annotations
 

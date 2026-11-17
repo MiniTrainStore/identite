@@ -7,8 +7,7 @@ with HarfBuzz, so kerning is kept) and placed against the locomotive's
 geometry: the two lines share the italic axis and the same width, and keep
 a constant clearance from the nose and the swoosh.
 
-    python -m pip install uharfbuzz fonttools cairosvg pillow
-    python scripts/build_logo.py
+    uv run scripts/build_logo.py
 
 Needs Montserrat ExtraBold Italic and SemiBold Italic (Debian/Ubuntu:
 fonts-montserrat), found with fc-match.

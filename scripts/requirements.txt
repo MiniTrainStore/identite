@@ -1,3 +1,0 @@
-cairosvg>=2.7,<3
-pypdf>=5,<8
-pillow>=10,<13

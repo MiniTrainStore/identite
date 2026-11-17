@@ -1,8 +1,8 @@
-# Weekly updates of the export scripts' Python dependencies and of the workflow's actions.
+# Weekly updates of the scripts' Python dependencies (uv.lock) and of the workflow's actions.
 version: 2
 updates:
-  - package-ecosystem: pip
-    directory: /scripts
+  - package-ecosystem: uv
+    directory: /
     schedule:
       interval: weekly
       day: monday

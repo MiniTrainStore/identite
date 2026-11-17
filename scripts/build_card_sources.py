@@ -5,9 +5,8 @@ Both cards share one graphic system (website colours and Montserrat font, navy
 band with a sky tab, rail track, Nimbus Roman Italic / Z003 accents). Edit the layout
 here, then run:
 
-    python -m pip install segno
-    python scripts/build_card_sources.py      # SVG masters
-    python scripts/generate_cards.py          # PDF, A4 sheets, previews, ZIP
+    uv run scripts/build_card_sources.py      # SVG masters
+    uv run scripts/generate_cards.py          # PDF, A4 sheets, previews, ZIP
 
 The editable SVGs keep live text. When Inkscape is available, the business
 card's main SVGs are also written with text converted to paths.
