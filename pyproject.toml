@@ -6,7 +6,7 @@ requires-python = ">=3.12"
 dependencies = [
     "cairosvg>=2.7,<3",
     "fonttools>=4.50",
-    "pillow>=10,<13",
+    "pillow>=13,<14",
     "pypdf>=5,<8",
     "segno>=1.6",
     "uharfbuzz>=0.40",
