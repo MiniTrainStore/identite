@@ -20,6 +20,10 @@ Mise en page :
 | [minitrainstore-locomotive.svg](minitrainstore-locomotive.svg) ([PNG](minitrainstore-locomotive.png)) | Symbole seul (locomotive entière) |
 | [minitrainstore-locomotive-marine.svg](minitrainstore-locomotive-marine.svg) | Symbole seul, une couleur |
 | [minitrainstore-icone-rond.svg](minitrainstore-icone-rond.svg) ([PNG 512 px](minitrainstore-icone-rond.png)) | Pastille ronde : avatar leboncoin, réseaux, sticker de colis |
+| [minitrainstore-icone-carre.svg](minitrainstore-icone-carre.svg) ([PNG 512 px](minitrainstore-icone-carre.png)) | Carré à coins arrondis, fond marine : icône d'application, raccourci, signature d'e-mail |
+| [minitrainstore-icone-carre-plein.svg](minitrainstore-icone-carre-plein.svg) ([PNG 512 px](minitrainstore-icone-carre-plein.png)) | Carré à bords droits, fond marine : pour les plateformes qui découpent elles-mêmes l'image (Google, Facebook, Instagram, icône iPhone) |
+| [minitrainstore-icone-carre-clair.svg](minitrainstore-icone-carre-clair.svg) ([PNG 512 px](minitrainstore-icone-carre-clair.png)) | Carré arrondi, fond blanc, couleurs d'origine : sur fond foncé ou à côté d'autres icônes sombres |
+| [minitrainstore-icone-carre-ciel.svg](minitrainstore-icone-carre-ciel.svg) ([PNG 512 px](minitrainstore-icone-carre-ciel.png)) | Carré arrondi, fond bleu ciel : variante plus vive, pour les visuels promotionnels |
 | [locomotive.svg](locomotive.svg) | Source : tracé de la locomotive (ne pas retoucher à la main) |
 
 Couleurs : marine `#133a57`, bleu ciel `#31aadf`.

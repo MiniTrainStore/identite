@@ -168,6 +168,39 @@ def recolour(layers, mapping):
     return [(mapping.get(c, c), d) for c, d in layers]
 
 
+BADGE = 512
+BADGE_RADIUS = 112     # corner radius of the rounded square (about 22 %, like app icons)
+BADGE_SCALE = 1.22
+BODY_X, BODY_Y = 318, 104   # visual centre of the locomotive body
+BADGES = {
+    # file: (shape, background, recolouring of the locomotive)
+    "minitrainstore-icone-rond.svg": ("rond", NAVY, {NAVY: WHITE}),
+    "minitrainstore-icone-carre.svg": ("arrondi", NAVY, {NAVY: WHITE}),
+    "minitrainstore-icone-carre-plein.svg": ("plein", NAVY, {NAVY: WHITE}),
+    "minitrainstore-icone-carre-clair.svg": ("arrondi", WHITE, {}),
+    "minitrainstore-icone-carre-ciel.svg": ("arrondi", SKY, {SKY: WHITE}),
+}
+
+
+def badge(layers, shape: str, background: str, mapping: dict[str, str]) -> str:
+    """A square tile, rounded square or disc filled by the locomotive."""
+    r = BADGE / 2
+    if shape == "rond":
+        outline = f'<circle cx="{r:g}" cy="{r:g}" r="{r:g}"/>'
+    elif shape == "arrondi":
+        outline = f'<rect width="{BADGE}" height="{BADGE}" rx="{BADGE_RADIUS}"/>'
+    else:
+        outline = f'<rect width="{BADGE}" height="{BADGE}"/>'
+    filled = outline.replace("/>", f' fill="{background}"/>')
+    tx, ty = r - BODY_X * BADGE_SCALE, r + 8 - BODY_Y * BADGE_SCALE
+    body = "".join(f'<path fill="{c}" d="{d}"/>' for c, d in recolour(layers, mapping))
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {BADGE} {BADGE}" '
+            f'width="{BADGE}" height="{BADGE}"><title>MiniTrainStore</title>'
+            f'<defs><clipPath id="tile">{outline}</clipPath></defs>{filled}'
+            f'<g clip-path="url(#tile)"><g transform="translate({tx:.2f} {ty:.2f}) '
+            f'scale({BADGE_SCALE})">{body}</g></g></svg>\n')
+
+
 def main() -> None:
     loco = locomotive()
     text = layout()
@@ -191,23 +224,17 @@ def main() -> None:
     files["minitrainstore-locomotive.svg"] = symbol(icon_layers)
     files["minitrainstore-locomotive-marine.svg"] = symbol(recolour(icon_layers, {SKY: NAVY}))
 
-    # Round badge (avatars, stickers): the locomotive fills the disc, which
-    # crops the speed lines and the swoosh.
-    r, scale = 256, 1.22
-    body_x, body_y = 318, 104            # visual centre of the locomotive body
-    tx, ty = r - body_x * scale, r + 8 - body_y * scale
-    body = "".join(f'<path fill="{c}" d="{d}"/>' for c, d in recolour(icon_layers, {NAVY: WHITE}))
-    files["minitrainstore-icone-rond.svg"] = (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {2 * r} {2 * r}" width="{2 * r}" height="{2 * r}">'
-        f'<title>MiniTrainStore</title><defs><clipPath id="disc"><circle cx="{r}" cy="{r}" r="{r}"/></clipPath></defs>'
-        f'<circle cx="{r}" cy="{r}" r="{r}" fill="{NAVY}"/><g clip-path="url(#disc)">'
-        f'<g transform="translate({tx:.2f} {ty:.2f}) scale({scale})">{body}</g></g></svg>\n')
+    # Badges (avatars, app icons, stickers): the locomotive fills a 512 px
+    # tile, which crops the speed lines and the swoosh.
+    for name, (shape, background, mapping) in BADGES.items():
+        files[name] = badge(icon_layers, shape, background, mapping)
     for name, content in files.items():
         (OUT / name).write_text(content, encoding="utf-8")
     cairosvg.svg2png(bytestring=files["minitrainstore-logo.svg"].encode(),
                      write_to=str(OUT / "minitrainstore-logo.png"), output_width=2148)
-    cairosvg.svg2png(bytestring=files["minitrainstore-icone-rond.svg"].encode(),
-                     write_to=str(OUT / "minitrainstore-icone-rond.png"), output_width=512)
+    for name in BADGES:
+        cairosvg.svg2png(bytestring=files[name].encode(),
+                         write_to=str(OUT / name.replace(".svg", ".png")), output_width=512)
     cairosvg.svg2png(bytestring=files["minitrainstore-locomotive.svg"].encode(),
                      write_to=str(OUT / "minitrainstore-locomotive.png"), output_width=1288)
     print("Logo files written to", OUT.relative_to(ROOT))
